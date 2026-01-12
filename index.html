@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Surpresa 💌</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffd7e6;
+        font-family: "Poppins", sans-serif;
+    }
+
+    .container {
+        position: relative;
+        cursor: pointer;
+    }
+
+    input {
+        display: none;
+    }
+
+    .envelope {
+        width: 380px;
+        height: 240px;
+        background: #ff8fb1;
+        border-radius: 12px;
+        position: relative;
+        box-shadow: 0 6px 20px rgba(0,0,0,.15);
+        overflow: hidden;
+        z-index: 2;
+    }
+
+    .flap {
+        width: 0;
+        height: 0;
+        border-left: 190px solid transparent;
+        border-right: 190px solid transparent;
+        border-top: 140px solid #ffb3c6;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        transform-origin: top;
+        transition: transform .7s ease;
+        z-index: 3;
+    }
+
+    .seal {
+        width: 44px;
+        height: 44px;
+        background: white;
+        border-radius: 50%;
+        position: absolute;
+        top: 75px;
+        left: 168px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        z-index: 4;
+        transition: opacity .5s ease;
+    }
+
+    .letter {
+        width: 330px;
+        background: white;
+        border-radius: 10px;
+        padding: 22px;
+        box-shadow: 0 6px 18px rgba(0,0,0,.15);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -260px;
+        transition: bottom .7s ease;
+        z-index: 1;
+    }
+
+    .letter h2 {
+        margin: 0;
+        font-size: 20px;
+    }
+
+    .letter p {
+        margin-top: 10px;
+        font-size: 15px;
+    }
+
+    input:checked ~ .flap {
+        transform: rotateX(180deg);
+    }
+
+    input:checked ~ .seal {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    input:checked ~ .envelope .letter {
+        bottom: 20px;
+        z-index: 5;
+    }
+</style>
+</head>
+<body>
+
+<label class="container">
+    <input type="checkbox" id="trigger">
+
+    <div class="flap"></div>
+    <div class="seal">❤</div>
+
+    <div class="envelope">
+        <div class="letter">
+            <h2>Oi! 😊</h2>
+            <p>Só queria te lembrar que você é uma pessoa incrível e especial para mim, seu sorriso foi a poesia mais linda que meus olhos já leram. Adoro você my princess 💕</p>
+            <p>— Ass: Danilo</p>
+        </div>
+    </div>
+</label>
+
+<!-- ÁUDIO -->
+<audio id="music" src="audio-editor.online.mp3"></audio>
+
+<script>
+    const trigger = document.getElementById("trigger");
+    const music = document.getElementById("music");
+
+    trigger.addEventListener("change", () => {
+        if (trigger.checked) {
+            music.currentTime = 0;
+            music.play();
+        } else {
+            music.pause();
+            music.currentTime = 0;
+        }
+    });
+</script>
+
+</body>
+</html>
