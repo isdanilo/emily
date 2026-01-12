@@ -104,6 +104,42 @@
         bottom: 20px;
         z-index: 5;
     }
+
+    /* Media Queries para celular */
+    @media (max-width: 480px) {
+        .envelope {
+            width: 280px;
+            height: 180px;
+        }
+
+        .flap {
+            border-left: 140px solid transparent;
+            border-right: 140px solid transparent;
+            border-top: 100px solid #ffb3c6;
+        }
+
+        .seal {
+            width: 36px;
+            height: 36px;
+            top: 55px;
+            left: 122px;
+            font-size: 16px;
+        }
+
+        .letter {
+            width: 240px;
+            padding: 16px;
+            bottom: -200px;
+        }
+
+        .letter h2 {
+            font-size: 18px;
+        }
+
+        .letter p {
+            font-size: 13px;
+        }
+    }
 </style>
 </head>
 <body>
@@ -132,9 +168,13 @@
 
     trigger.addEventListener("change", () => {
         if (trigger.checked) {
-            music.currentTime = 0;
-            music.play();
+            // Carta aberta → toca música do início
+            setTimeout(() => {
+                music.currentTime = 0;
+                music.play();
+            }, 700); // espera o flap abrir
         } else {
+            // Carta fechada → pausa música
             music.pause();
             music.currentTime = 0;
         }
